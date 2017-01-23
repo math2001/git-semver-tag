@@ -36,7 +36,7 @@ def main():
                            stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     last_tag = cmd.stdout.read().decode() or cmd.stderr.read().decode()
     last_tag = last_tag.strip()
-    matchobj = re.match(r'^(?P<v>v)?(?P<major>\d\.)(?P<minor>\d\.)(?P<patch>\d)$', last_tag)
+    matchobj = re.match(r'^(?P<v>v)?(?P<major>\d)\.(?P<minor>\d)\.(?P<patch>\d)$', last_tag)
     if matchobj is not None:
         if args.patch:
             tag(matchobj.group('v'), matchobj.group('major'), matchobj.group('minor'),
