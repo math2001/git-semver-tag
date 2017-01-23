@@ -42,11 +42,9 @@ def main():
             tag(matchobj.group('v'), matchobj.group('major'), matchobj.group('minor'),
                 int(matchobj.group('patch')) + 1)
         elif args.minor:
-            tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1,
-                matchobj.group('patch'))
+            tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1, 0)
         elif args.major:
-            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, matchobj.group('minor'),
-                matchobj.group('patch'))
+            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0)
         else:
             # CSW: ignore
             print("You need to specify -m, -p or -M since it's not the first tag")
