@@ -39,13 +39,13 @@ def main():
     matchobj = re.match(r'^(?P<v>v)?(?P<major>\d\.)(?P<minor>\d\.)(?P<patch>\d)$', last_tag)
     if matchobj is not None:
         if args.patch:
-            tag(matchobj.matchobj('v'), matchobj.group('major'), matchobj.group('minor'),
+            tag(matchobj.group('v'), matchobj.group('major'), matchobj.group('minor'),
                 int(matchobj.group('patch')) + 1)
         elif args.minor:
-            tag(matchobj.matchobj('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1,
+            tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1,
                 matchobj.group('patch'))
         elif args.major:
-            tag(matchobj.matchobj('v'), int(matchobj.group('major')) + 1, matchobj.group('minor'),
+            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, matchobj.group('minor'),
                 matchobj.group('patch'))
         else:
             # CSW: ignore
