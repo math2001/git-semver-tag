@@ -5,6 +5,17 @@ your tags with a `v`.
 
 ## Usage
 
+
+```bash
+$ gst -M # or --major
+$ gst -m # or --minor
+$ gst -p # or --patch
+```
+
+See `gst --help` for more info.
+
+## Installation
+
 You just need to bind the `git-semver-tag.py` to an alias:
 
 ```
@@ -36,7 +47,7 @@ Of course, replace `C:/Users/you_username/aliases.cmd` with the actual path to t
 
 Click `OK`, and double click on this shortcut. You have now access to the alias `gst`.
 
-### Other platform
+### Other platforms
 
 I only have a pc using Windows, so, Google's your best friend if you don't know how to create an
 alias.

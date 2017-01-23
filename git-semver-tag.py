@@ -18,9 +18,9 @@ def confirm(question):
         elif ans in no:
             return False
 
-def tag(v, major, minor, patch):
+def tag(v, major, minor, patch, quiet):
     tag = '{}{}.{}.{}'.format(v or '', major, minor, patch)
-    if confirm('Tag {}'.format(tag)):
+    if quiet or confirm('Tag {}'.format(tag)):
         subprocess.Popen(['git', 'tag', tag])
 
 def main():
@@ -29,6 +29,7 @@ def main():
     type_.add_argument('-M', '--major', action="store_true", help='Increment the major')
     type_.add_argument('-m', '--minor', action="store_true", help='Increment the minor')
     type_.add_argument('-p', '--patch', action="store_true", help='Increment the patch')
+    type_.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
     args = parser.parse_args()
 
     # http://stackoverflow.com/a/7261049/6164984
@@ -40,11 +41,12 @@ def main():
     if matchobj is not None:
         if args.patch:
             tag(matchobj.group('v'), matchobj.group('major'), matchobj.group('minor'),
-                int(matchobj.group('patch')) + 1)
+                int(matchobj.group('patch')) + 1, args.quiet)
         elif args.minor:
-            tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1, 0)
+            tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1, 0,
+                args.quiet)
         elif args.major:
-            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0)
+            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0, args.quiet)
         else:
             # CSW: ignore
             print("You need to specify -m, -p or -M since it's not the first tag")
@@ -53,7 +55,7 @@ def main():
     elif last_tag.strip() == 'fatal: No names found, cannot describe anything.':
         # CSW: ignore
         print('Creating first tag...')
-        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG)
+        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG, quiet=args.quiet)
     elif last_tag.startswith('fatal'):
         # CSW: ignore
         print(last_tag.strip())
