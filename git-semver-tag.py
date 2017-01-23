@@ -18,10 +18,14 @@ def confirm(question):
         elif ans in no:
             return False
 
-def tag(v, major, minor, patch, quiet):
+def tag(v, major, minor, patch, args):
     tag = '{}{}.{}.{}'.format(v or '', major, minor, patch)
-    if quiet or confirm('Tag {}'.format(tag)):
+    if args.sure or confirm('Tag {}'.format(tag)):
         subprocess.Popen(['git', 'tag', tag])
+        if not args.quiet:
+            # CSW: ignore
+            print('Created {}'.format(tag))
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -29,7 +33,8 @@ def main():
     type_.add_argument('-M', '--major', action="store_true", help='Increment the major')
     type_.add_argument('-m', '--minor', action="store_true", help='Increment the minor')
     type_.add_argument('-p', '--patch', action="store_true", help='Increment the patch')
-    type_.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
+    parser.add_argument('-s', '--sure', action='store_true', help="Do not ask question")
+    parser.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
     args = parser.parse_args()
 
     # http://stackoverflow.com/a/7261049/6164984
@@ -41,12 +46,12 @@ def main():
     if matchobj is not None:
         if args.patch:
             tag(matchobj.group('v'), matchobj.group('major'), matchobj.group('minor'),
-                int(matchobj.group('patch')) + 1, args.quiet)
+                int(matchobj.group('patch')) + 1, args)
         elif args.minor:
             tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1, 0,
                 args.quiet)
         elif args.major:
-            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0, args.quiet)
+            tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0, args)
         else:
             # CSW: ignore
             print("You need to specify -m, -p or -M since it's not the first tag")
@@ -55,7 +60,7 @@ def main():
     elif last_tag.strip() == 'fatal: No names found, cannot describe anything.':
         # CSW: ignore
         print('Creating first tag...')
-        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG, quiet=args.quiet)
+        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG, quiet=args)
     elif last_tag.startswith('fatal'):
         # CSW: ignore
         print(last_tag.strip())
