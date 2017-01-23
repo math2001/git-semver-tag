@@ -1,0 +1,49 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Git Semver Tag\n\n\nGit Semver Tag is a simple python script that allows you to create \nsemver\n git tags without\nworrying about the last tag. It's relative. You say:\n\n\n\n\nCreate a new tag: it's a patch\n\n\n\n\nfor example. It'll manage the number for you. Of course, it's not that verbose, but you get the idea\n:simple_smile:\n\n\ngst --patch\n\n\n\n\n\nThis is how you'd do. Sounds good? Keep reading then!\n\n\nInstallation\n\n\nYou need \npython\n installed on your system. I'm using it with python 3.4, but it should work with\npython 2 too.\n\n\nSo, let's get going!\n\n\n$ \ncd\n \nsomewhere\n\n$ git clone https://github.com/math2001/git-semver-tag/\n\n\n\n\n\nAnd then, just alias the \ngit-semver-tag.py\n to whatever you want (in the example above, I did it\nfor \ngst\n).\n\n\nOn Windows\n\n\nIf you don't know how to create aliases on Windows, here's how:\n\n\nWrite this into a file, say in \nC:/Users/you_username/aliases.cmd\n.\n\n\ndoskey \ngst\n=\npython \nsomewhere\n\\git-semver-tag\\git-semver-tag.py\n \n$*\n\n\n\n\n\n\nQuickly, \ndoskey\n is the command to alias. Then \ngst\n is the name of the alias. After the \n=\n, it's\nthe command that is going to be called. The \n$*\n allows to give args to the actual command through\nthe alias.\n\n\nThen, create a shortcut for \ncmd\n, on the desktop for example. Right click on it, select\n\nProperties\n, in the \nShortcut\n tab, click in the \nTarget\n tab and type:\n\n\ncmd /k C:/Users/you_username/aliases.cmd\n\n\n\n\n\nOf course, replace \nC:/Users/you_username/aliases.cmd\n with the actual path to the alias file.\n\n\nClick \nOK\n, and double click on this shortcut. You have now access to the alias \ngst\n.\n\n\nOn other platforms\n\n\nI only have a pc using Windows, so, Google's your best friend if you don't know how to create an\nalias.\n\n\nUsage\n\n\n$ git last-tag \n# see git aliases at the bottom of this page\n\nv1.0.0\n\n$ gst --patch\n$ git last-tag\nv1.0.1\n\n$ gst --minor\n$ git last-tag\nv1.1.0\n\n$ gst --major\n$ git last-tag\nv2.0.0\n\n\n\n\n\n\n\nBug\n\n\nMake sure you don't create 2 tags that points to the same commits. Otherwise, the tag you'll try\nto create will be already existing.\n\n\n\n\nRecommendation\n\n\nI recommend you to add the option \n--sure\n to your alias, because otherwise, it'll ask you each time\nif you're sure you want to create the tag.\n\n\ngst\n=\npython \nsomewhere\n\\git-semver-tag\\git-semver-tag.py\n --sure \n$*\n\n\n\n\n\n\nGit aliases\n\n\nA few little git aliases:\n\n\n$ git config --global alias.last\n=\nlog -1\n$ git last \n# shows the last commit\n\n\n$ git config --global alias.last-tag\n=\ndescribe --abbrev\n=\n0\n --tags\n$ git last-tag \n# shows the last tag\n\n\n$ git config --global alias.hub\n=\n!f() { [ -f .githubrepo ] \n REPO=\n$(\nhead -n \n1\n .githubrepo\n)\n || REPO=\n${\nPWD\n##*/\n}\n; URL=\\\nhttps://github.com/math2001/\n$REPO\n\\\n; if [ \\\n$1\n\\\n == i ]; then start \\\n$URL\n/issues\\\n; elif [ \\\n$1\n\\\n == p ]; then start \\\n$URL\n/pulls\\\n; elif [ \\\n$1\n\\\n == w ]; then start \n$URL\n/wiki; else start \n$URL\n/\n$1\n; fi; }; f\n\n$ git hub \n# opens the github repo.\n\n\n\n\n\n\nMore infos about the \nlast one",
+            "title": "Home"
+        },
+        {
+            "location": "/#git-semver-tag",
+            "text": "Git Semver Tag is a simple python script that allows you to create  semver  git tags without\nworrying about the last tag. It's relative. You say:   Create a new tag: it's a patch   for example. It'll manage the number for you. Of course, it's not that verbose, but you get the idea\n:simple_smile:  gst --patch  This is how you'd do. Sounds good? Keep reading then!",
+            "title": "Git Semver Tag"
+        },
+        {
+            "location": "/#installation",
+            "text": "You need  python  installed on your system. I'm using it with python 3.4, but it should work with\npython 2 too.  So, let's get going!  $  cd   somewhere \n$ git clone https://github.com/math2001/git-semver-tag/  And then, just alias the  git-semver-tag.py  to whatever you want (in the example above, I did it\nfor  gst ).",
+            "title": "Installation"
+        },
+        {
+            "location": "/#on-windows",
+            "text": "If you don't know how to create aliases on Windows, here's how:  Write this into a file, say in  C:/Users/you_username/aliases.cmd .  doskey  gst = python  somewhere \\git-semver-tag\\git-semver-tag.py   $*   Quickly,  doskey  is the command to alias. Then  gst  is the name of the alias. After the  = , it's\nthe command that is going to be called. The  $*  allows to give args to the actual command through\nthe alias.  Then, create a shortcut for  cmd , on the desktop for example. Right click on it, select Properties , in the  Shortcut  tab, click in the  Target  tab and type:  cmd /k C:/Users/you_username/aliases.cmd  Of course, replace  C:/Users/you_username/aliases.cmd  with the actual path to the alias file.  Click  OK , and double click on this shortcut. You have now access to the alias  gst .",
+            "title": "On Windows"
+        },
+        {
+            "location": "/#on-other-platforms",
+            "text": "I only have a pc using Windows, so, Google's your best friend if you don't know how to create an\nalias.",
+            "title": "On other platforms"
+        },
+        {
+            "location": "/#usage",
+            "text": "$ git last-tag  # see git aliases at the bottom of this page \nv1.0.0\n\n$ gst --patch\n$ git last-tag\nv1.0.1\n\n$ gst --minor\n$ git last-tag\nv1.1.0\n\n$ gst --major\n$ git last-tag\nv2.0.0   Bug  Make sure you don't create 2 tags that points to the same commits. Otherwise, the tag you'll try\nto create will be already existing.",
+            "title": "Usage"
+        },
+        {
+            "location": "/#recommendation",
+            "text": "I recommend you to add the option  --sure  to your alias, because otherwise, it'll ask you each time\nif you're sure you want to create the tag.  gst = python  somewhere \\git-semver-tag\\git-semver-tag.py  --sure  $*",
+            "title": "Recommendation"
+        },
+        {
+            "location": "/#git-aliases",
+            "text": "A few little git aliases:  $ git config --global alias.last = log -1\n$ git last  # shows the last commit \n\n$ git config --global alias.last-tag = describe --abbrev = 0  --tags\n$ git last-tag  # shows the last tag \n\n$ git config --global alias.hub = !f() { [ -f .githubrepo ]   REPO= $( head -n  1  .githubrepo )  || REPO= ${ PWD ##*/ } ; URL=\\ https://github.com/math2001/ $REPO \\ ; if [ \\ $1 \\  == i ]; then start \\ $URL /issues\\ ; elif [ \\ $1 \\  == p ]; then start \\ $URL /pulls\\ ; elif [ \\ $1 \\  == w ]; then start  $URL /wiki; else start  $URL / $1 ; fi; }; f \n$ git hub  # opens the github repo.   More infos about the  last one",
+            "title": "Git aliases"
+        },
+        {
+            "location": "/license/",
+            "text": "This project is published under MIT license.\n\n\n\n\nThe MIT License is a permissive license that is short and to the point. It lets people do anything\nthey want with your code as long as they provide attribution back to you and don\u2019t hold you liable.\n\n\n\u2014 \nfrom \nchoosealicense.com\n, by \nGitHub\n\n\n\n\nCopyright 2017 Mathieu PATUREL\n\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and\nassociated documentation files (the \"Software\"), to deal in the Software without restriction,\nincluding without limitation the rights to use, copy, modify, merge, publish, distribute,\nsublicense, and/or sell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial\nportions of the Software.\n\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT\nNOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES\nOR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+            "title": "License"
+        }
+    ]
+}
