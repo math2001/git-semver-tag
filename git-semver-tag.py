@@ -24,8 +24,7 @@ def tag(v, major, minor, patch, args):
         subprocess.Popen(['git', 'tag', tag])
         if not args.quiet:
             # CSW: ignore
-            print('Created {}'.format(tag))
-
+            print('Created tag {}'.format(tag))
 
 def main():
     parser = argparse.ArgumentParser()
