@@ -1,0 +1,38 @@
+site_name: Git Semver Tag
+theme: material
+repo_name: math2001/git-semver-tag
+repo_url: https://github.com/math2001/git-semver-tag
+site_description: Sublime Text 3 Plugin Git Semver Tag's documentation
+site_author: math2001
+
+pages:
+  - Home: index.md
+  - License: license.md
+
+markdown_extensions:
+  - toc(permalink=true)
+  - pymdownx.arithmatex
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tilde
+  - admonition
+  - codehilite
+
+extra:
+  palette:
+    primary: green
+    accent: Green
+  social:
+    - type: github
+      link: https://github.com/math2001
+    - type: twitter
+      link: https://twitter.com/_math2001
