@@ -33,7 +33,7 @@ def main():
     type_.add_argument('-M', '--major', action="store_true", help='Increment the major')
     type_.add_argument('-m', '--minor', action="store_true", help='Increment the minor')
     type_.add_argument('-p', '--patch', action="store_true", help='Increment the patch')
-    parser.add_argument('-s', '--sure', action='store_true', help="Do not ask question")
+    parser.add_argument('-s', '--sure', action='store_true', help="Do not ask any confirmation")
     parser.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
     args = parser.parse_args()
 
@@ -58,9 +58,10 @@ def main():
             parser.print_help()
             exit(1)
     elif last_tag.strip() == 'fatal: No names found, cannot describe anything.':
-        # CSW: ignore
-        print('Creating first tag...')
-        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG, quiet=args)
+        if not args.quiet:
+            # CSW: ignore
+            print('Creating first tag:')
+        tag('v' if confirm("Add 'v' prefix") else None, *FRIST_TAG, args=args)
     elif last_tag.startswith('fatal'):
         # CSW: ignore
         print(last_tag.strip())
