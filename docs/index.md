@@ -6,7 +6,7 @@ worrying about the last tag. It's relative. You say:
 > Create a new tag: it's a patch
 
 for example. It'll manage the number for you. Of course, it's not that verbose, but you get the idea
-:simple_smile:
+:slight_smile:
 
 ```sh
 gst --patch
