@@ -4,6 +4,7 @@ from __future__ import print_function
 import argparse
 import subprocess
 import re
+import webbrowser
 
 FRIST_TAG = [0, 1, 0]
 
@@ -28,6 +29,7 @@ def tag(v, major, minor, patch, args):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--docs', action='store_true', help='Open the docs and exit')
     type_ = parser.add_mutually_exclusive_group(required=False)
     type_.add_argument('-M', '--major', action="store_true", help='Increment the major')
     type_.add_argument('-m', '--minor', action="store_true", help='Increment the minor')
@@ -35,6 +37,10 @@ def main():
     parser.add_argument('-s', '--sure', action='store_true', help="Do not ask any confirmation")
     parser.add_argument('-q', '--quiet', action='store_true', help='Quiet mode')
     args = parser.parse_args()
+
+    if args.docs:
+        webbrowser.open_new_tab('https://math2001.github.io/git-semver-tag')
+        exit(0)
 
     # http://stackoverflow.com/a/7261049/6164984
     cmd = subprocess.Popen(['git', 'describe', '--abbrev=0', '--tags'],
