@@ -54,7 +54,7 @@ def main():
                 int(matchobj.group('patch')) + 1, args)
         elif args.minor:
             tag(matchobj.group('v'), matchobj.group('major'), int(matchobj.group('minor')) + 1, 0,
-                args.quiet)
+                args)
         elif args.major:
             tag(matchobj.group('v'), int(matchobj.group('major')) + 1, 0, 0, args)
         else:
